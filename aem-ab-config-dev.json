@@ -1,0 +1,363 @@
+{
+  "format": "aem-ab-config",
+  "version": 1,
+  "environment": "dev",
+  "root": "/content/abbvie-nextgen-eds/corporate/abbvie-com",
+  "mappings": [
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/ar/es/ab-config",
+      "domain": "abbvie.com.ar",
+      "value": "https://www-d1.abbvie.com.ar"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/at/de/ab-config",
+      "domain": "abbvie.at",
+      "value": "https://www-d1.abbvie.at"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/au/en/ab-config",
+      "domain": "abbvie.com.au",
+      "value": "https://www-d1.abbvie.com.au"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/be/fr/ab-config",
+      "domain": "abbvie.be",
+      "value": "https://www-d1.abbvie.be"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/be/nl/ab-config",
+      "domain": "abbvie.be",
+      "value": "https://www-d1.abbvie.be"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/bg/bg/ab-config",
+      "domain": "abbvie.bg",
+      "value": "https://www-d1.abbvie.bg"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/br/pt/ab-config",
+      "domain": "abbvie.com.br",
+      "value": "https://www-d1.abbvie.com.br"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/ch/de/ab-config",
+      "domain": "abbvie.ch",
+      "value": "https://www-d1.abbvie.ch"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/ch/en/ab-config",
+      "domain": "abbvie.ch",
+      "value": "https://www-d1.abbvie.ch"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/ch/fr/ab-config",
+      "domain": "abbvie.ch",
+      "value": "https://www-d1.abbvie.ch"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/cl/es/ab-config",
+      "domain": "abbvie.cl",
+      "value": "https://www-d1.abbvie.cl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/co/es/ab-config",
+      "domain": "abbvie.com.co",
+      "value": "https://www-d1.abbvie.com.co"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/de/de/ab-config",
+      "domain": "abbvie.de",
+      "value": "https://www-d1.abbvie.de"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/dk/da/ab-config",
+      "domain": "abbvie.dk",
+      "value": "https://www-d1.abbvie.dk"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/es/es/ab-config",
+      "domain": "abbvie.es",
+      "value": "https://www-d1.abbvie.es"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/fi/fi/ab-config",
+      "domain": "abbvie.fi",
+      "value": "https://www-d1.abbvie.fi"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/fr/fr/ab-config",
+      "domain": "abbvie.fr",
+      "value": "https://www-d1.abbvie.fr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/gr/el/ab-config",
+      "domain": "abbvie.gr",
+      "value": "https://www-d1.abbvie.gr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/hk/en/ab-config",
+      "domain": "abbvie.com.hk",
+      "value": "https://www-d1.abbvie.com.hk"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/hu/hu/ab-config",
+      "domain": "abbvie.hu",
+      "value": "https://www-d1.abbvie.hu"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/ie/en/ab-config",
+      "domain": "abbvie.ie",
+      "value": "https://www-d1.abbvie.ie"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/in/en/ab-config",
+      "domain": "abbvie.in",
+      "value": "https://www-d1.abbvie.in"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/it/it/ab-config",
+      "domain": "abbvie.it",
+      "value": "https://www-d1.abbvie.it"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/jp/ja/ab-config",
+      "domain": "abbvie.co.jp",
+      "value": "https://www-d1.abbvie.co.jp"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/bg/ab-config",
+      "domain": "abbvie.bg",
+      "value": "https://www-d1.abbvie.bg"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/cs/ab-config",
+      "domain": "abbvie.cz",
+      "value": "https://www-d1.abbvie.cz"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/da/ab-config",
+      "domain": "abbvie.dk",
+      "value": "https://www-d1.abbvie.dk"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/de/ab-config",
+      "domain": "abbvie.de",
+      "value": "https://www-d1.abbvie.de"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/el/ab-config",
+      "domain": "abbvie.gr",
+      "value": "https://www-d1.abbvie.gr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/en-apac/ab-config",
+      "domain": "abbvie.sg",
+      "value": "https://www-d1.abbvie.sg"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/en-gb/ab-config",
+      "domain": "abbvie.co.uk",
+      "value": "https://www-d1.abbvie.co.uk"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/en/ab-config",
+      "domain": "abbvie.com",
+      "value": "https://www-d1.abbvie.com"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/es-latam/ab-config",
+      "domain": "abbvie.cl",
+      "value": "https://www-d1.abbvie.cl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/es/ab-config",
+      "domain": "abbvie.es",
+      "value": "https://www-d1.abbvie.es"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/fi/ab-config",
+      "domain": "abbvie.fi",
+      "value": "https://www-d1.abbvie.fi"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/fr-old/ab-config",
+      "domain": "abbvie.fr",
+      "value": "https://www-d1.abbvie.fr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/fr/ab-config",
+      "domain": "abbvie.fr",
+      "value": "https://www-d1.abbvie.fr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/fr1/ab-config",
+      "domain": "abbvie.fi",
+      "value": "https://www-d1.abbvie.fi"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/he/ab-config",
+      "domain": "abbvie.co.il",
+      "value": "https://www-d1.abbvie.co.il"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/hu/ab-config",
+      "domain": "abbvie.hu",
+      "value": "https://www-d1.abbvie.hu"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/it/ab-config",
+      "domain": "abbvie.it",
+      "value": "https://www-d1.abbvie.it"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/ja/ab-config",
+      "domain": "abbvie.co.jp",
+      "value": "https://www-d1.abbvie.co.jp"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/ko/ab-config",
+      "domain": "abbvie.co.kr",
+      "value": "https://www-d1.abbvie.co.kr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/ms/ab-config",
+      "domain": "abbvie.com.my",
+      "value": "https://www-d1.abbvie.com.my"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/nl-old/ab-config",
+      "domain": "abbvie.nl",
+      "value": "https://www-d1.abbvie.nl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/nl/ab-config",
+      "domain": "abbvie.nl",
+      "value": "https://www-d1.abbvie.nl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/no/ab-config",
+      "domain": "abbvie.no",
+      "value": "https://www-d1.abbvie.no"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/pl/ab-config",
+      "domain": "abbvie.pl",
+      "value": "https://www-d1.abbvie.pl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/pt/ab-config",
+      "domain": "abbvie.pl",
+      "value": "https://www-d1.abbvie.pl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/ru/ab-config",
+      "domain": "abbvie.ru",
+      "value": "https://www-d1.abbvie.ru"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/sk/ab-config",
+      "domain": "abbvie.sk",
+      "value": "https://www-d1.abbvie.sk"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/sv/ab-config",
+      "domain": "abbvie.se",
+      "value": "https://www-d1.abbvie.se"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/tr/ab-config",
+      "domain": "abbvie.com.tr",
+      "value": "https://www-d1.abbvie.com.tr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/uk/ab-config",
+      "domain": "abbvie.ua",
+      "value": "https://www-d1.abbvie.ua"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/language-masters/zh-tw/ab-config",
+      "domain": "abbvie.com.cn",
+      "value": "https://www-d1.abbvie.com.cn"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/mx/es/ab-config",
+      "domain": "abbvie.com.mx",
+      "value": "https://www-d1.abbvie.com.mx"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/my/en/ab-config",
+      "domain": "abbvie.com.my",
+      "value": "https://www-d1.abbvie.com.my"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/nl/nl/ab-config",
+      "domain": "abbvie.nl",
+      "value": "https://www-d1.abbvie.nl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/no/no/ab-config",
+      "domain": "abbvie.no",
+      "value": "https://www-d1.abbvie.no"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/nz/en/ab-config",
+      "domain": "abbvie.co.nz",
+      "value": "https://www-d1.abbvie.co.nz"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/pl/pl/ab-config",
+      "domain": "abbvie.pl",
+      "value": "https://www-d1.abbvie.pl"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/pmis/en/ab-config",
+      "domain": "https://pmis.abbvie.com/",
+      "value": "https://pmis.abbvie.com/"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/pr/es/ab-config",
+      "domain": "abbvie.pr",
+      "value": "https://www-d1.abbvie.pr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/pt/pt/ab-config",
+      "domain": "abbvie.pt",
+      "value": "https://www-d1.abbvie.pt"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/se/sv/ab-config",
+      "domain": "abbvie.se",
+      "value": "https://www-d1.abbvie.se"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/sg/en/ab-config",
+      "domain": "abbvie.com.sg",
+      "value": "https://www-d1.abbvie.com.sg"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/tr/tr/ab-config",
+      "domain": "abbvie.com.tr",
+      "value": "https://www-d1.abbvie.com.tr"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/tw/zh-tw/ab-config",
+      "domain": "abbvie.com.tw",
+      "value": "https://www-d1.abbvie.com.tw"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/uk/en/ab-config",
+      "domain": "abbvie.co.uk",
+      "value": "https://www-d1.abbvie.co.uk"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/us/en/ab-config",
+      "domain": "abbvie.com",
+      "value": "https://www-d1.abbvie.com"
+    },
+    {
+      "page": "/content/abbvie-nextgen-eds/corporate/abbvie-com/uy/es/ab-config",
+      "domain": "abbvie.com.uy",
+      "value": "https://www-d1.abbvie.com.uy"
+    }
+  ]
+}
