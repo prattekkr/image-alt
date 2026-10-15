@@ -72,7 +72,7 @@ export async function autoUpdatePackage(
     },
   });
   const { roots, pages } = listPackagePages(names, options.siteRoot);
-  if (roots.length === 0) throw new Error("Could not find a language root in the package (no */index/.content.xml page).");
+  if (roots.length === 0) throw new Error("Could not identify a language root. Include an index page or use a country/language or language-masters/language content path. For other layouts, specify --site-root with the CLI.");
 
   // One live URL per distinct page path (several language roots can share a path).
   const urlToPage = new Map<string, { path: string; files: string[] }>();

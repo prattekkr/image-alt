@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:aem-config": "tsx --test src/lib/aemConfig.test.ts",
+    "test:aem-package": "tsx --test src/lib/aemPackage.test.ts",
     "crawl": "tsx scripts/crawl.ts",
     "map-eds": "tsx scripts/map-eds.ts",
     "update-package": "tsx scripts/update-package.ts"

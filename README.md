@@ -139,7 +139,8 @@ Copies the live site's image alt text and captions (from the crawl CSV) into an 
 Rules:
 
 - **Pages:**
-  - The site root is the folder that contains `index/.content.xml`, e.g. `content/abbvie-nextgen-eds/corporate/abbvie-com/nz/en`.
+  - The site root is normally the folder that contains `index/.content.xml`, e.g. `content/abbvie-nextgen-eds/corporate/abbvie-com/nz/en`. Partial packages without an index page are also supported when their paths identify a country/language root (such as `nl/nl`) or a language-master root (such as `language-masters/nl`). A news-only package keeps `/news/...` as its live page paths; a homepage does not need to be added.
+  - For other layouts, specify the exact language root using the CLI's `--site-root` option. The updater does not guess a root from the common ancestor of arbitrary pages.
   - `/` maps to `<root>/index/.content.xml`, and `/who-we-are/our-principles.html` maps to `<root>/who-we-are/our-principles/.content.xml`. Matching ignores letter case.
   - Package pages without a matching live page are not modified.
 - **Images:**

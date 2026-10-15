@@ -181,19 +181,26 @@ interface ImageSlot {
   used: boolean;
 }
 
-/** The shallowest folder that has an index/.content.xml page, e.g. "content/.../nz/en". */
+/** The shallowest detected language folder, e.g. "content/.../nz/en". */
 export function detectSiteRoot(entryNames: string[]): string | null {
   return detectLanguageRoots(entryNames)[0] ?? null;
 }
 
 /**
- * Language roots: folders that contain an index/.content.xml page (e.g. ".../nz/en",
- * ".../language-masters/en"). Roots nested inside another root (e.g. drafts copies) are ignored.
+ * Prefer folders containing index/.content.xml. For partial packages, also recognise
+ * country/language and language-masters/language paths outside those roots.
  */
 export function detectLanguageRoots(entryNames: string[]): string[] {
-  const candidates = entryNames
+  const indexed = entryNames
     .filter((n) => /^jcr_root\/.+\/index\/\.content\.xml$/.test(n))
-    .map((n) => n.replace(/^jcr_root\//, "").replace(/\/index\/\.content\.xml$/, ""))
+    .map((n) => n.replace(/^jcr_root\//, "").replace(/\/index\/\.content\.xml$/, ""));
+  const inferred: string[] = [];
+  for (const name of entryNames) {
+    if (!name.endsWith("/.content.xml") || name.startsWith("jcr_root/content/dam/") || indexed.some((root) => name.startsWith(`jcr_root/${root}/`))) continue;
+    const match = /^jcr_root\/(content\/.+?\/(?:language-masters|[a-z]{2})\/[a-z]{2}(?:[-_][a-z]{2})?)\//i.exec(name);
+    if (match) inferred.push(match[1]);
+  }
+  const candidates = [...new Set([...indexed, ...inferred])]
     .sort((a, b) => a.split("/").length - b.split("/").length || a.localeCompare(b));
   const roots: string[] = [];
   for (const c of candidates) if (!roots.some((r) => c.startsWith(r + "/"))) roots.push(c);
@@ -395,7 +402,7 @@ export function updatePackage(
   const entries = unzipSync(packageZip);
   const names = Object.keys(entries);
   const { roots, pages } = listPackagePages(names, options.siteRoot);
-  if (roots.length === 0) throw new Error("Could not find a language root in the package (no */index/.content.xml page).");
+  if (roots.length === 0) throw new Error("Could not identify a language root. Include an index page or use a country/language or language-masters/language content path. For other layouts, specify --site-root with the CLI.");
 
   // Page key (path after the language root) -> package files (one per language root).
   const pageFiles = new Map<string, string[]>();
