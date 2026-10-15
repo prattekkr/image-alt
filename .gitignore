@@ -42,7 +42,6 @@ next-env.d.ts
 
 # crawl output
 /output/
-/input/
 
 # source AEM packages
 /zip/
