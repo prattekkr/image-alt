@@ -149,7 +149,7 @@ export default function PackageUpdater() {
   const abortRef = useRef<AbortController | null>(null);
   const [assetMaps, setAssetMaps] = useState<AssetMapFile[] | null>(null);
   const [assetMapName, setAssetMapName] = useState("");
-  const [opts, setOpts] = useState({ updateAlt: true, updateCaption: true, includeCardImage: true, includeFragments: true });
+  const [opts, setOpts] = useState({ updateAlt: true, updateCaption: true, includeFragments: true });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ResultData | null>(null);
@@ -332,7 +332,6 @@ export default function PackageUpdater() {
             ["updateAlt", "Alt text"],
             ["updateCaption", "Captions"],
             ["includeFragments", "Header/footer fragments"],
-            ["includeCardImage", "Page teaser (cardImage) alt"],
           ] as const
         ).map(([key, label]) => (
           <label key={key} className="inline-flex cursor-pointer select-none items-center gap-2 pb-2 text-slate-600">

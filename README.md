@@ -133,7 +133,7 @@ Copies the live site's image alt text and captions (from the crawl CSV) into an 
   ```bash
   npm run update-package -- --package zip/NZ-EN.zip --site https://www.abbvie.co.nz     # automatic
   npm run update-package -- --package zip/NZ-EN.zip --csv output/<crawl-folder>          # from a CSV
-  # options: --asset-map FILE  --out DIR  --no-alt  --no-caption  --no-fragments  --no-card-image  --site-root content/.../nz/en  --concurrency N
+  # options: --asset-map FILE  --out DIR  --no-alt  --no-caption  --no-fragments  --site-root content/.../nz/en  --concurrency N
   ```
 
 Rules:
@@ -152,7 +152,7 @@ Rules:
 - **Header/footer:**
   - Images with the same alt text on at least half of the live pages are treated as header/footer.
   - They aren't paired with page content. Instead they update the `nav`/`header`/`footer` fragments, using header rows for nav/header and footer rows for footer.
-- **Page teaser:** `cardImageAlt` gets the live alt text of the same image on the same page.
+- **Page teaser excluded:** `cardImage` and `cardImageAlt` are never updated or added, even if the teaser asset matches a live image. This applies to CSV and automatic mode, the API and CLI. There is no teaser-update checkbox; legacy `includeCardImage` inputs cannot enable it. Ordinary content images using the same asset still receive their own alt/caption updates.
 - **Nothing else changes:**
   - Only alt/caption attribute values are edited, or added when missing.
   - Every other file in the ZIP keeps its original bytes and order.

@@ -11,15 +11,13 @@ import { parseCsv } from "./csvParse";
  * - Images: matched per page by asset (UUID / DAM path), pairing repeats in document order.
  * - Values: live values overwrite package values, including empty ones.
  * - Header/footer: images in the nav/header/footer fragments get the live header/footer values.
- * - Page teaser (cardImage): cardImageAlt gets the live alt of the same image on the same page.
+ * - Page teaser properties (cardImage and cardImageAlt) are never changed.
  * - Only alt/caption attribute values change; every other byte of the package stays the same.
  */
 
 export interface UpdateOptions {
   updateAlt: boolean;
   updateCaption: boolean;
-  /** Fill the page teaser alt (cardImageAlt) from the same image on the same live page. */
-  includeCardImage: boolean;
   /** Update images in the nav/header/footer fragments from the live header/footer. */
   includeFragments: boolean;
   /** Override the auto-detected site root, e.g. "content/abbvie-nextgen-eds/corporate/abbvie-com/nz/en". */
@@ -29,7 +27,6 @@ export interface UpdateOptions {
 export const DEFAULT_UPDATE_OPTIONS: UpdateOptions = {
   updateAlt: true,
   updateCaption: true,
-  includeCardImage: true,
   includeFragments: true,
 };
 
@@ -113,7 +110,6 @@ const IMAGE_FIELDS: Record<string, string[]> = {
   image: ["imageAlt"],
   background: ["backgroundAlt", "backgroundImageAlt"],
   imageIcon: ["imageIconAlt"],
-  cardImage: ["cardImageAlt"],
   // Video posters (video / brightcove-video): the accessibility label is the poster's alt text.
   placeholderImage: ["posterAccessibilityLabel"],
   posterImage: ["posterAccessibilityLabel"],
@@ -287,8 +283,8 @@ function scanImageSlots(xml: string, assets: AssetMap): ImageSlot[] {
     for (const field of Object.keys(IMAGE_FIELDS)) {
       const attr = attrs.get(field);
       if (!attr) continue;
-      // Page properties: only the teaser (cardImage) is an image with alt text; others (e.g. og image) are metadata.
-      if (node === "jcr:content" && field !== "cardImage") continue;
+      // Page metadata, including teaser properties, is outside the updater's scope.
+      if (node === "jcr:content") continue;
       const ref = readDocviewValue(attr.raw);
       if (!/urn:aaid:aem:|\/content\/dam\//i.test(ref)) continue;
       const assetKey = assets.assetKey(ref);
@@ -537,8 +533,7 @@ export function updatePackage(
     const rows = allRows.filter((_, i) => !chrome?.has(i));
     for (const file of files)
       processFile(file, pagePath, (ctx) => {
-        const blockSlots = ctx.slots.filter((s) => s.field !== "cardImage");
-        const altByAsset = new Map<string, string>();
+        const blockSlots = ctx.slots;
 
         // Block images: CSV rows and package nodes are paired per asset, in document order.
         for (const row of rows) {
@@ -547,7 +542,6 @@ export function updatePackage(
             ctx.report(row, "no-asset-match");
             continue;
           }
-          if (!altByAsset.has(assetKey)) altByAsset.set(assetKey, row.altText);
           const slot = blockSlots.find((s) => !s.used && s.assetKey === assetKey);
           if (!slot) {
             ctx.report(row, "not-found-on-page");
@@ -556,15 +550,6 @@ export function updatePackage(
           slot.used = true;
           imagesMatched++;
           ctx.applyRow(slot, row);
-        }
-
-        // Page teaser: alt of the same image on the same live page.
-        if (options.includeCardImage) {
-          for (const slot of ctx.slots.filter((s) => s.field === "cardImage")) {
-            if (!altByAsset.has(slot.assetKey)) continue;
-            imagesMatched++;
-            ctx.applyRow(slot, { pagePath, imageUrl: "", altText: altByAsset.get(slot.assetKey)!, caption: "", edsImagePath: "" });
-          }
         }
       });
   }

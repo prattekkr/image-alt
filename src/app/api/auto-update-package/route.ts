@@ -11,7 +11,7 @@ const MAX_PREVIEW_ROWS = 5000;
  * One-step package update. multipart/form-data:
  *   package     the AEM package ZIP
  *   site        live site domain, e.g. https://www.abbvie.co.nz
- *   assetMapName / assetMapFile, updateAlt, updateCaption, includeCardImage, includeFragments (optional)
+ *   assetMapName / assetMapFile, updateAlt, updateCaption, includeFragments (optional)
  * Streams NDJSON progress events and finishes with a "result" event.
  */
 export async function POST(request: Request) {
@@ -59,7 +59,6 @@ export async function POST(request: Request) {
           {
             updateAlt: flag("updateAlt", DEFAULT_UPDATE_OPTIONS.updateAlt),
             updateCaption: flag("updateCaption", DEFAULT_UPDATE_OPTIONS.updateCaption),
-            includeCardImage: flag("includeCardImage", DEFAULT_UPDATE_OPTIONS.includeCardImage),
             includeFragments: flag("includeFragments", DEFAULT_UPDATE_OPTIONS.includeFragments),
             signal: request.signal,
           },

@@ -7,7 +7,7 @@
  * From an existing live CSV:
  *   npm run update-package -- --package zip/NZ-EN.zip --csv output/<crawl-folder>
  *
- * Options: [--asset-map FILE] [--out DIR] [--no-card-image] [--no-fragments] [--no-caption] [--no-alt]
+ * Options: [--asset-map FILE] [--out DIR] [--no-fragments] [--no-caption] [--no-alt]
  *          [--site-root content/.../nz/en] [--concurrency 16]
  *
  * Writes <package>-alt-updated.zip, <package>-alt-update-report.csv and (automatic mode)
@@ -51,7 +51,6 @@ async function main() {
     ...DEFAULT_UPDATE_OPTIONS,
     updateAlt: args["no-alt"] !== "true",
     updateCaption: args["no-caption"] !== "true",
-    includeCardImage: args["no-card-image"] !== "true",
     includeFragments: args["no-fragments"] !== "true",
     siteRoot: args["site-root"],
   };

@@ -12,7 +12,7 @@ const MAX_PREVIEW_ROWS = 5000;
  *   package        the AEM package ZIP
  *   files          crawl CSV(s) or a ZIP of them (needs Page Path/URL, Image URL, Alt Text, Caption, EDS image path)
  *   assetMapName / assetMapFile   optional asset map selection (see /api/map-eds)
- *   updateAlt, updateCaption, includeCardImage, includeFragments   "true" | "false"
+ *   updateAlt, updateCaption, includeFragments   "true" | "false"
  */
 export async function POST(request: Request) {
   let form: FormData;
@@ -50,7 +50,6 @@ export async function POST(request: Request) {
     const result = updatePackage(new Uint8Array(await pkg.arrayBuffer()), rowsByPage, asset.map, {
       updateAlt: flag("updateAlt", DEFAULT_UPDATE_OPTIONS.updateAlt),
       updateCaption: flag("updateCaption", DEFAULT_UPDATE_OPTIONS.updateCaption),
-      includeCardImage: flag("includeCardImage", DEFAULT_UPDATE_OPTIONS.includeCardImage),
       includeFragments: flag("includeFragments", DEFAULT_UPDATE_OPTIONS.includeFragments),
     });
     const base = pkg.name.replace(/\.zip$/i, "");

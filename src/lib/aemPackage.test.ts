@@ -60,3 +60,27 @@ test("updates a partial news package while preserving captions and unrelated ent
   assert.equal(strFromU8(output["META-INF/vault/filter.xml"]), metadata);
   assert.deepEqual(Object.keys(output), [file, "META-INF/vault/filter.xml"]);
 });
+
+test("never updates or adds cardImageAlt while updating the same asset's content alt and caption", () => {
+  const root = `${base}/nl/nl`;
+  const uuid = "11111111-1111-4111-8111-111111111111";
+  const image = `urn:aaid:aem:${uuid}`;
+  const assets = new AssetMap([{ uuid, openApiUrl: image }]);
+  for (const oldAlt of [' cardImageAlt="Original teaser"', ""]) {
+    const file = `jcr_root/${root}/nieuws/GPTW/.content.xml`;
+    const xml = `<jcr:root><jcr:content cardImage="${image}"${oldAlt} modelFields="[cardImageAlt@String]"><image image="${image}" imageAlt="Old alt" caption="Old caption"/><teaser cardImage="${image}"${oldAlt}/></jcr:content></jcr:root>`;
+    const options = { ...DEFAULT_UPDATE_OPTIONS, includeCardImage: true };
+    const result = updatePackage(zipSync({ [file]: strToU8(xml) }), new Map([["/nieuws/gptw", [{
+      pagePath: "/nieuws/GPTW.html", imageUrl: image, edsImagePath: image,
+      altText: "Group of employees showing award", caption: "New caption",
+    }]]]), assets, options);
+    assert.equal(strFromU8(unzipSync(result.zip)[file]), xml
+      .replace('imageAlt="Old alt"', 'imageAlt="Group of employees showing award"')
+      .replace('caption="Old caption"', 'caption="New caption"'));
+    assert.equal(result.summary.imagesMatched, 1);
+    assert.equal(result.summary.fieldsUpdated, 2);
+    assert.equal(result.changes.length, 1);
+    assert.equal(result.changes[0].altField, "imageAlt");
+    assert.ok(!result.changes.some((row) => row.altField === "cardImageAlt"));
+  }
+});
