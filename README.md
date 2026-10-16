@@ -158,11 +158,13 @@ Rules:
   - Every other file in the ZIP keeps its original bytes and order.
   - Values are escaped for docview XML: `&`, `<`, `"`, and a leading `{` or `[`.
 
-Report columns (one row per image): **Page Path, Status, Alt Old, Alt New, Alt Status, Caption Old, Caption New, Caption Status, Alt Property, Caption Property, Node, Package File, Image URL, EDS image path, Note**. Alt/Caption Status is `updated`, `unchanged`, `no-field` (the component has no such property), or empty (not applicable).
+Report columns (one row per image, plus page-level outcomes): **Page Path, Status, Alt Old, Alt New, Alt Status, Caption Old, Caption New, Caption Status, Alt Property, Caption Property, Node, Package File, Image URL, EDS image path, Note**. Alt/Caption Status is `updated`, `unchanged`, `no-field` (the component has no such property), or empty (not applicable).
+
+When every live image row for a matched page is classified as shared header/footer content, the report includes one page-level `unchanged` row per package file, with an explanatory Note. These rows appear in both the UI's **All** and **Unchanged** filters and the downloaded report; they do not count as matched images or updated fields. Filter counts are report-row counts, not unique-page counts.
 
 Report statuses:
 - `updated`: the value was changed.
-- `unchanged`: the package already had the live value.
+- `unchanged`: the package already had the live value, or no page-content update was attempted because all of the page's live image rows were classified as shared header/footer content (explained in Note; per-field statuses remain empty).
 - `not-found-on-page`: the image is on the live page but not on that package page.
 - `no-asset-match`: the live image isn't in the asset map.
 - `no-alt-field`: the component has no alt property.

@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
 import { AssetMap } from "./assetMap";
-import { DEFAULT_UPDATE_OPTIONS, detectLanguageRoots, listPackagePages, updatePackage } from "./aemPackage";
+import { DEFAULT_UPDATE_OPTIONS, detectLanguageRoots, listPackagePages, updatePackage, type CsvImageRow } from "./aemPackage";
+import { parseCsv } from "./csvParse";
 
 const base = "content/abbvie-nextgen-eds/corporate/abbvie-com";
 
@@ -82,5 +83,71 @@ test("never updates or adds cardImageAlt while updating the same asset's content
     assert.equal(result.changes.length, 1);
     assert.equal(result.changes[0].altField, "imageAlt");
     assert.ok(!result.changes.some((row) => row.altField === "cardImageAlt"));
+  }
+});
+
+test("reports shared-image-only pages as unchanged without modifying their content or match counts", () => {
+  const roots = [`${base}/nl/nl`, `${base}/language-masters/nl`];
+  const image = "urn:aaid:aem:11111111-1111-4111-8111-111111111111";
+  const xml = `<jcr:root><jcr:content><image image="${image}" imageAlt="Keep page alt" caption="Keep page caption"/></jcr:content></jcr:root>`;
+  const entries: Record<string, Uint8Array> = {};
+  const rows = new Map<string, CsvImageRow[]>();
+  for (const page of ["one", "two", "three"]) {
+    for (const root of roots) {
+      entries[`jcr_root/${root}/news/${page}/.content.xml`] = strToU8(xml);
+    }
+    rows.set(`/news/${page}`, [{
+      pagePath: `/news/${page}.html`, imageUrl: image, edsImagePath: image,
+      altText: "Shared header alt", caption: "",
+    }]);
+  }
+  const result = updatePackage(zipSync(entries), rows, new AssetMap([]));
+  assert.equal(result.changes.length, 6);
+  assert.deepEqual(result.summary.byStatus, { unchanged: 6 });
+  assert.equal(result.summary.pagesMatched, 3);
+  assert.equal(result.summary.headerFooterRows, 3);
+  assert.equal(result.summary.imagesMatched, 0);
+  assert.equal(result.summary.fieldsUpdated, 0);
+  assert.equal(result.summary.filesModified, 0);
+  for (const row of result.changes) {
+    assert.equal(row.status, "unchanged");
+    assert.ok(row.packageFile in entries);
+    assert.equal(row.altStatus, "");
+    assert.equal(row.captionStatus, "");
+    assert.equal(row.node, "");
+    assert.match(row.note, /all 1 live image rows were classified as shared header\/footer images/);
+  }
+  const output = unzipSync(result.zip);
+  for (const file of Object.keys(entries)) assert.deepEqual(output[file], entries[file]);
+  const report = parseCsv(result.reportCsv);
+  assert.equal(report.length, 7);
+  assert.ok(report.slice(1).every((row) => row[1] === "unchanged" && row[14].includes("Page content was not modified")));
+});
+
+test("does not add a page-level unchanged row when content images have their own outcomes", () => {
+  const root = `${base}/language-masters/nl`;
+  const shared = "urn:aaid:aem:11111111-1111-4111-8111-111111111111";
+  const content = "urn:aaid:aem:22222222-2222-4222-8222-222222222222";
+  for (const altText of ["Old alt", "New alt"]) {
+    const entries: Record<string, Uint8Array> = {};
+    const rows = new Map<string, CsvImageRow[]>();
+    for (const page of ["one", "two", "three"]) {
+      entries[`jcr_root/${root}/news/${page}/.content.xml`] = strToU8(
+        `<jcr:root><jcr:content><image image="${content}" imageAlt="Old alt"/></jcr:content></jcr:root>`,
+      );
+      rows.set(`/news/${page}`, [{
+        pagePath: `/news/${page}.html`, imageUrl: shared, edsImagePath: shared, altText: "Header", caption: "",
+      }]);
+    }
+    rows.get("/news/one")!.push({
+      pagePath: "/news/one.html", imageUrl: content, edsImagePath: content, altText, caption: "",
+    });
+    const result = updatePackage(zipSync(entries), rows, new AssetMap([]));
+    const pageRows = result.changes.filter((row) => row.pagePath === "/news/one.html");
+    assert.equal(pageRows.length, 1);
+    assert.equal(pageRows[0].status, altText === "Old alt" ? "unchanged" : "updated");
+    assert.equal(pageRows[0].imageUrl, content);
+    assert.equal(result.summary.imagesMatched, 1);
+    assert.equal(result.summary.fieldsUpdated, altText === "Old alt" ? 0 : 1);
   }
 });

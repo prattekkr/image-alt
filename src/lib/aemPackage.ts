@@ -531,6 +531,19 @@ export function updatePackage(
     pagesMatched++;
     const chrome = chromeIndex.get(pageKey);
     const rows = allRows.filter((_, i) => !chrome?.has(i));
+    if (rows.length === 0) {
+      for (const file of files) {
+        changes.push(
+          changeRow({
+            pagePath,
+            packageFile: file,
+            status: "unchanged",
+            note: `No page-content images to update: all ${allRows.length} live image rows were classified as shared header/footer images. Page content was not modified.`,
+          }),
+        );
+      }
+      continue;
+    }
     for (const file of files)
       processFile(file, pagePath, (ctx) => {
         const blockSlots = ctx.slots;
